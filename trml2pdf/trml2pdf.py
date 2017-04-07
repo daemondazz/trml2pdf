@@ -229,6 +229,10 @@ class _rml_doc(object):
                 addMapping(name, 0, 1, name)  # italic
                 addMapping(name, 1, 0, name)  # bold
                 addMapping(name, 1, 1, name)  # italic and bold
+            for font in node.getElementsByTagName('registerTTFont'):
+                face = font.getAttribute('faceName')
+                file = font.getAttribute('fileName')
+                pdfmetrics.registerFont(TTFont(face, file))
 
     def render(self, out):
         el = self.dom.documentElement.getElementsByTagName('docinit')
