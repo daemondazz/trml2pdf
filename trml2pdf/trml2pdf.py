@@ -292,6 +292,8 @@ class _rml_canvas(object):
 
     def _drawWrappedString(self, node):
         text = self._textual(node)
+        if isintance(text, bytes):
+            text = text.decode()
         x = utils.unit_get(node.getAttribute('x'))
         y = utils.unit_get(node.getAttribute('y'))
         max_width = utils.unit_get(node.getAttribute('maxWidth'))
