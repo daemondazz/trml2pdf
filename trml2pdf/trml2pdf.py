@@ -101,10 +101,10 @@ class _rml_styles(object):
         for attr in ['bulletColor']:
             if node.hasAttribute(attr):
                 style.__dict__[attr] = color.get(node.getAttribute(attr))
-        for attr in ['bulletType', 'bulletFontName', 'bulletDetent', 'bulletDir', 'bulletFormat', 'start']:
+        for attr in ['bulletType', 'bulletFontName', 'bulletDir', 'bulletFormat', 'start']:
             if node.hasAttribute(attr):
                 style.__dict__[attr] = node.getAttribute(attr)
-        for attr in ['leftIndent', 'rightIndent', 'bulletFontSize', 'bulletOffsetY']:
+        for attr in ['leftIndent', 'rightIndent', 'bulletFontSize', 'bulletOffsetY', 'bulletDedent']:
             if node.hasAttribute(attr):
                 style.__dict__[attr] = utils.unit_get(node.getAttribute(attr))
         if node.hasAttribute('bulletAlign'):
@@ -418,6 +418,8 @@ class _rml_canvas(object):
 
         if node.hasAttribute("preserveAspectRatio"):
             args["preserveAspectRatio"] = True
+        if node.hasAttribute('mask'):
+            args['mask'] = node.getAttribute('mask')
         if ('width' in args) and ('height' not in args):
             args['height'] = sy * args['width'] / sx
         elif ('height' in args) and ('width' not in args):
@@ -678,7 +680,7 @@ class _rml_flowable(object):
             return platypus.Spacer(width=width, height=length)
         elif node.localName == 'barCode':
             return code39.Extended39(self._textual(node))
-        elif node.localName == 'pageBreak':
+        elif node.localName in ['pageBreak', 'nextPage']:
             return platypus.PageBreak()
         elif node.localName == 'condPageBreak':
             return platypus.CondPageBreak(**(utils.attr_get(node, ['height'])))
