@@ -1,11 +1,13 @@
 *.pyc
 .env/*
 .eggs/*
+.tox/*
+.idea/*
+.results.txt
 dist/*
 build/*
+tests/output/*.pdf
 *.egg-info/*
-.tox/*
-.results.txt
 *.orig
 *.log
 *.swp
@@ -14,3 +16,4 @@ build/*
 \#*\#
 .\#*
 *.bak
+_doc/*
