@@ -104,11 +104,11 @@ class RmlTemplate(object):
         pts = node.getElementsByTagName('pageTemplate')
         for pt in pts:
             if not pt.hasAttribute('pageSize'):
-                 pageSize = (utils.unit_get('21cm'), utils.unit_get('29.7cm'))
-             else:
-                 ps = [x.strip() for x in pt.getAttribute('pageSize').replace(')', '').replace(
+                pageSize = (utils.unit_get('21cm'), utils.unit_get('29.7cm'))
+            else:
+                ps = [x.strip() for x in pt.getAttribute('pageSize').replace(')', '').replace(
                      '(', '').split(',')]
-                 pageSize = (utils.unit_get(ps[0]), utils.unit_get(ps[1]))
+                pageSize = (utils.unit_get(ps[0]), utils.unit_get(ps[1]))
             frames = []
             for frame_el in pt.getElementsByTagName('frame'):
                 frame = platypus.Frame(**(utils.attr_get(
