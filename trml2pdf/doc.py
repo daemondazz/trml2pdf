@@ -120,10 +120,10 @@ class RmlTemplate(object):
             if len(gr):
                 drw = canv.RmlDraw(gr[0], self.doc.styles)
                 self.page_templates.append(platypus.PageTemplate(
-                    frames=frames, pageSize=pageSize, onPage=drw.render, **utils.attr_get(pt, [], {'id': 'str'})))
+                    frames=frames, pagesize=pageSize, onPage=drw.render, **utils.attr_get(pt, [], {'id': 'str'})))
             else:
                 self.page_templates.append(
-                    platypus.PageTemplate(frames=frames, pageSize=pageSize, **utils.attr_get(pt, [], {'id': 'str'})))
+                    platypus.PageTemplate(frames=frames, pagesize=pageSize, **utils.attr_get(pt, [], {'id': 'str'})))
         self.doc_tmpl.addPageTemplates(self.page_templates)
 
     def render(self, node_story):
